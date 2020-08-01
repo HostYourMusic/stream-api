@@ -115,4 +115,5 @@ dist
 # Ignore build directory
 .serverless
 
+build
 # End of https://www.toptal.com/developers/gitignore/api/node,serverless

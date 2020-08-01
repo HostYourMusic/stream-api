@@ -19,7 +19,7 @@
     "eslint:src": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
     "eslint:test": "eslint 'test/**/*.{js,ts,tsx}' --quiet --fix",
     "eslint": "npm run eslint:test; npm run eslint:src",
-    "pre-push": "rm -rf reports/ build/; npm run eslint; tsc; npm run test:coverage;",
+    "pre-push": "rm -rf reports/ build/; npm run eslint; tsc;",
     "clean": "rm -rf node_modules/ reports/ .serverless/ .webpack/ build/ ./coverage",
     "build": "npm run clean; npm ci; npm run eslint; npm run test:coverage",
     "package": "npx serverless package",
