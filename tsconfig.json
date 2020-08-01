@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "alwaysStrict": true,
+    "strict": true,
+    "module": "CommonJS",
+    "sourceMap": true,
+    "target": "ES2018",
+    "types": [
+      "node",
+      "reflect-metadata",
+      "jest"
+    ],
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": [
+      "ESNext"
+    ],
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "build/",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "./types/**/*",
+    "./src/**/*",
+    "./test/**/*"
+  ]
+}

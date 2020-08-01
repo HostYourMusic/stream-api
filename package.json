@@ -1,0 +1,82 @@
+{
+  "name": "stream-api",
+  "version": "1.0.0",
+  "configFileVersion": "1.0.0",
+  "description": "Host Your Music - Strem APIs",
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "sls": "sls",
+    "test:all": "jest",
+    "test": "jest test/unit/**",
+    "test:component": "jest test/component/**",
+    "test:watch": "jest test/unit/** --watch",
+    "test:coverage": "jest test/unit/** --coverage",
+    "coverage": "npm run test:coverage",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "eslint:src": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+    "eslint:test": "eslint 'test/**/*.{js,ts,tsx}' --quiet --fix",
+    "eslint": "npm run eslint:test; npm run eslint:src",
+    "pre-push": "rm -rf reports/ build/; npm run eslint; tsc; npm run test:coverage;",
+    "clean": "rm -rf node_modules/ reports/ .serverless/ .webpack/ build/ ./coverage",
+    "build": "npm run clean; npm ci; npm run eslint; npm run test:coverage",
+    "package": "npx serverless package",
+    "deploy": "npm run sls:deploy",
+    "sls:deploy": "serverless deploy",
+    "predeploy": "npm run package",
+    "start:dev": "serverless offline start --port 3000",
+    "download": "aws s3 cp s3://${BUCKET_CONFIG}/${npm_package_name}/deploy_config_${NODE_ENV}_${npm_package_configFileVersion}.json ./config --region ${AWS_DEFAULT_REGION}"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run pre-push"
+    }
+  },
+  "keywords": [
+    "host-your-music",
+    "api"
+  ],
+  "author": "Rodrigo de Souza",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HostYourMusic/stream-api"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.53",
+    "@types/dotenv": "^8.2.0",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.13",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "aws-sdk-mock": "^5.1.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "dotenv-extended": "^2.8.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-notice": "0.9.10",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "serverless": "^1.77.1",
+    "ts-jest": "^26.1.1",
+    "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2",
+    "yaml-jest": "^1.0.5",
+    "yaml-loader": "^0.6.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.691.0",
+    "inversify": "^5.0.1"
+  }
+}
